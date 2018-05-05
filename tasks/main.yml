@@ -86,6 +86,7 @@
     name: drew-kun.dnscrypt
   vars:
     dnscrypt_on_pihole: yes
+  when: pihole_dnscrypt
   tags:
     - pihole
     - pihole_dnscrypt
