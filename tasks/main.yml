@@ -27,4 +27,11 @@
   include_tasks: docker.yml
   when: pihole_docker
   tags: pihole
+
+- name: '[main] Add whitelist repo'
+  include_tasks: whitelist.yml
+  tags:
+    - pihole
+    - whitelist
+
 ...

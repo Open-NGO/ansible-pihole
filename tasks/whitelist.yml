@@ -1,0 +1,22 @@
+---
+
+- name: '[whitelist] Clone whitelist repo'
+  git:
+    repo: https://github.com/anudeepND/whitelist.git
+    dest: /opt/whitelist
+
+- name: '[whitelist] Changing perm of whitelist script'
+  file:
+    dest: /opt/whitelist/scripts/whitelist.sh
+    mode: +x
+
+- name: '[whitelist] Execute the whitelist script'
+  command: sh /opt/whitelist/scripts/whitelist.sh
+
+- name: '[whitelist] Set cron job for daily whitelist updates'
+  cron:
+    name: "daily pihole whitelist updater"
+    user: "{{ ansible_user_id }}"
+    minute: "10"
+    hour: "4"
+    job: "/opt/whitelist/scripts/whitelist.sh"
